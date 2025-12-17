@@ -20,6 +20,7 @@ const start = async ()=>{
     })
     await server.listen({port: 4000});
     console.log("Graphql conectado p1");
+    console.log("Github conectado tb")
 }
 
 start().catch(err=>console.error(err));
