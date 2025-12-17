@@ -19,7 +19,7 @@ const start = async ()=>{
         }
     })
     await server.listen({port: 4000});
-    console.log("Graphql conectado");
+    console.log("Graphql conectado p1");
 }
 
 start().catch(err=>console.error(err));
