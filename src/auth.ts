@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv";
 import { getDB } from "./db/mongo";
-import { prueba1 } from "./utils";
+import { p1 } from "./utils";
 import { ObjectId } from "bson";
 
 dotenv.config();
@@ -27,7 +27,7 @@ export const getUserFromToken = async (token: string) => {
     const payload = verifyToken(token);
     if(!payload) return null;
     const db = getDB();
-    return await db.collection(prueba1).findOne({
+    return await db.collection(p1).findOne({
         _id: new ObjectId(payload.userId)
     })
 }
