@@ -23,8 +23,8 @@ export const resolvers:IResolvers = {
             return await buscapokemonporId(id);
         }
     },
-    User:{
-        miEquipo: async(parent :PokeTrainer)=>{
+    Trainer:{
+        pokemons: async(parent :PokeTrainer)=>{
             const db=getDB();
             const miEquipoPokemon = parent.pokemons;
             const IDsparaPokemons = miEquipoPokemon.map((id) => new ObjectId(id));
