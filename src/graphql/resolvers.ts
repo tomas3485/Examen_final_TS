@@ -33,7 +33,7 @@ export const resolvers:IResolvers = {
         },
         login: async (_,{email,password})=>{
             const user = await login(email,password);
-            if(!user) throw new Error(" Inicio de sesion erroneo ");
+            if(!user) throw new Error(" Inicio de sesion fallido ");
             return signToken(user._id.toString());
         },
         createPokemon: async (_, { name, description, height, weight,types},{user}) => {
