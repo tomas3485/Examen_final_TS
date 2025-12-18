@@ -3,7 +3,8 @@ import { signToken } from "../auth";
 import { getDB } from "../db/mongo";
 import { ObjectId } from "mongodb";
 import { URLSearchParams } from "node:url";
-import {createUser,validateUser} from "../collections/users"
+import {startJourney,login} from "../collections/entrenador";
+import {buscapokemonporId,MuestraPokemons,createPokemon} from "../collections/pokemons";
 
 export const resolvers:IResolvers = {
     Query:{
@@ -12,24 +13,33 @@ export const resolvers:IResolvers = {
             return {
                 _id:user._id.toString(),
                 ...user
-
             }
+        },
+        pokemons: async(_,{page,size})=>{
+            return await MuestraPokemons(page,size);
+        },
+        pokemon: async(_,{id})=>{
+            return await buscapokemonporId(id);
         }
     },
 
     User:{
-        //esto vacio?
+        
     },
     Mutation: {
-        register: async (_,{email,password})=>{
-            const idDelClienteCreado = await createUser(email,password);
-            return signToken(idDelClienteCreado);
+        startJourney: async (_,{email,password})=>{
+            const idEntrenador= await startJourney(email,password);
+            return signToken(idEntrenador);
         },
         login: async (_,{email,password})=>{
-            const user = await validateUser(email,password);
-            if(!user) throw new Error("Malas credenciales");
+            const user = await login(email,password);
+            if(!user) throw new Error(" Inicio de sesion erroneo ");
             return signToken(user._id.toString());
         },
-
+        createPokemon: async (_, { name, description, height, weight,types},{user}) => {
+            if(!user) throw new Error("Inicia sesion para hacer esto")
+                const result = await createPokemon(name,description, height, weight,types);
+            return result;
+        },
     },
 }
