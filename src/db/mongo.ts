@@ -9,7 +9,7 @@ const dbName = "coleccion1";
 
 export const connectToMongoDB = async () => {
     try{
-        const mongoUrl = "mongodb+srv://tomas123:oshawott@cluster0.ddttlap.mongodb.net/?appName=Cluster0";
+        const mongoUrl = process.env.MONGO_URL;
         if(mongoUrl){
             client = new MongoClient(mongoUrl);
             await client.connect();
