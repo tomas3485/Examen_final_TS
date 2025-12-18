@@ -25,9 +25,5 @@ export const createPokemon = async (name: string, description: string, height:nu
     return newPokemon;
 }
 
-export const catchPokemon = async (pokemonID: string,nickname: string)=>{
-    const db = getDB();
-    
 
-}
 

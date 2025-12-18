@@ -22,10 +22,6 @@ export const resolvers:IResolvers = {
             return await buscapokemonporId(id);
         }
     },
-
-    User:{
-        
-    },
     Mutation: {
         startJourney: async (_,{email,password})=>{
             const idEntrenador= await startJourney(email,password);

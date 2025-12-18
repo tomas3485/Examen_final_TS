@@ -46,8 +46,7 @@ export const typeDefs = gql`
     type Trainer {
     _id: ID!
     name: String!
-    #En base datos se guardará solo el id, encadenado
-    OwnedPokemon.
+    #En base datos se guardará solo el id, encadenado OwnedPokemon.
     pokemons: [OwnedPokemon]!
     }
 
