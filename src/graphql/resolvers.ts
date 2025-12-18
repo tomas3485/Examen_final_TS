@@ -42,7 +42,7 @@ export const resolvers:IResolvers = {
             return signToken(user._id.toString());
         },
         createPokemon: async (_, { name, description, height, weight,types},{user}) => {
-            if(!user) throw new Error("Inicia sesion para hacer esto")
+            if(!user) throw new Error("Inicia sesion para hacer esto.")
                 const result = await createPokemon(name,description, height, weight,types);
             return result;
         },
@@ -53,7 +53,7 @@ export const resolvers:IResolvers = {
             const IdPokemon = new ObjectId(pokemonId);
             
             const hayPokemon = await db.collection(p2).findOne({_id:IdPokemon});
-            if(!hayPokemon) throw new Error ("El pokemon no existe");
+            if(!hayPokemon) throw new Error ("El pokemon no existe ");
             
             await db.collection(p3).updateOne({ _id: userId },{$addToSet : {miEquipo: pokemonId}});
 
